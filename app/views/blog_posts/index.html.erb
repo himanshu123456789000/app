@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Blog posts</h1>
+
+<%= link_to "New blog post", new_blog_post_path %>
+
+<%= form_tag destroy_multiple_blog_posts_path, method: :delete do %>
+<table>
+<% @blog_posts.each do |blog_post| %>
+<tr>
+<td><%= check_box_tag "blog_posts[]", blog_post.id %></td>
+ <td>
+            <%= blog_post.name %>
+          </td>
+          <td>
+            <%= link_to "update", edit_blog_post_path(blog_post) %>
+          </td>
+          <td>
+            <%= button_to "Delete", blog_post, method: :delete, remote: :true  %>
+          </td>
+          <td>
+            <%= link_to "Show", blog_post %>
+          </td>
+      </tr>
+      
+    <% end %>
+</table>
+<%= submit_tag "Delete selected" %>
+<% end %>
